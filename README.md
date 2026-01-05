@@ -24,13 +24,13 @@
 通过 Swift Package Manager 引入：
 
 ```swift
-.package(url: "你的仓库链接", from: "1.0.0")
+.package(url: "https://github.com/holonous1130/Qwen3-Embedding-MLX-Swift.git", from: "1.0.0")
 ```
 
 ## 📖 快速上手
 
 ```swift
-import textmods
+import Qwen3Embedding
 
 let engine = Qwen3EmbeddingEngine()
 await engine.loadModel()
