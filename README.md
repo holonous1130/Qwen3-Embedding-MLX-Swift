@@ -8,6 +8,7 @@
 - **Matryoshka 嵌入支持**: 支持 32 到 1024 维度的动态截断，并自动执行 L2 重归一化，在低维度下依然保持高效的搜索精度。
 - **本地离线加载**: 优先探测本地 `Documents` 目录，支持完全离线运行。
 - **官方对齐**: 精准实现 Causal Mask 和 `Instruct: {task}\nQuery:{query}` 模板，相似度计算结果与官方 Python 端 100% 对齐。
+- **面向 Swift 6 设计**: 完美支持 Swift 6 严格并发检查（Strict Concurrency Checking），`Qwen3EmbeddingEngine` 通过 `@MainActor` 隔离确保 UI 线程安全性。
 - **Swift 原生封装**: 提供 `Qwen3EmbeddingEngine` 易用接口，完美适配 SwiftUI。
 
 ## 🚀 性能数据 (iPhone 15 Pro)

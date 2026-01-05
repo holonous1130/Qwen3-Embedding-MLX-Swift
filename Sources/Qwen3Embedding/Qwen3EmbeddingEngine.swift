@@ -16,6 +16,7 @@ import Hub
 
 // MARK: - EmbeddingManager
 
+@MainActor
 public class Qwen3EmbeddingEngine: ObservableObject {
     
     // --- 库级公共属性 ---
@@ -43,11 +44,9 @@ public class Qwen3EmbeddingEngine: ObservableObject {
     public func loadModel() async {
         guard !isLoading && !isModelLoaded else { return }
         
-        await MainActor.run {
-            self.isLoading = true
-            self.errorMessage = nil
-            self.loadingProgress = "正在初始化..."
-        }
+        self.isLoading = true
+        self.errorMessage = nil
+        self.loadingProgress = "正在初始化..."
         
         do {
             let hub = HubApi()
@@ -63,9 +62,9 @@ public class Qwen3EmbeddingEngine: ObservableObject {
             if fileManager.fileExists(atPath: localModelFolder.path) {
                 print("发现本地模型目录，切换至离线模式: \(localModelFolder.path)")
                 modelFolder = localModelFolder
-                await MainActor.run { self.loadingProgress = "正在从本地 Documents 加载..." }
+                self.loadingProgress = "正在从本地 Documents 加载..."
             } else {
-                await MainActor.run { self.loadingProgress = "正在读取配置 (HuggingFace)..." }
+                self.loadingProgress = "正在读取配置 (HuggingFace)..."
                 modelFolder = try await hub.snapshot(from: repo, matching: ["config.json", "tokenizer.json", "tokenizer_config.json"])
             }
             // ----------------------------------------
@@ -78,13 +77,13 @@ public class Qwen3EmbeddingEngine: ObservableObject {
             let configData = try Data(contentsOf: configURL)
             let config = try JSONDecoder().decode(Qwen3Configuration.self, from: configData)
             
-            await MainActor.run { self.loadingProgress = "正在加载 Tokenizer..." }
+            self.loadingProgress = "正在加载 Tokenizer..."
             tokenizer = try await AutoTokenizer.from(modelFolder: modelFolder)
             
-            await MainActor.run { self.loadingProgress = "正在构建模型结构..." }
+            self.loadingProgress = "正在构建模型结构..."
             let qwenModel = Qwen3Model(config)
             
-            await MainActor.run { self.loadingProgress = "正在查找模型权重..." }
+            self.loadingProgress = "正在查找模型权重..."
             
             // 搜索 safetensors 文件
             var safetensorsFiles: [URL] = []
@@ -97,7 +96,7 @@ public class Qwen3EmbeddingEngine: ObservableObject {
             
             if safetensorsFiles.isEmpty && !fileManager.fileExists(atPath: localModelFolder.path) {
                  // 如果本地没搜到，且还没试过 Hub 搜，则试一下 Hub
-                 await MainActor.run { self.loadingProgress = "本地无权重，尝试从云端下载..." }
+                 self.loadingProgress = "本地无权重，尝试从云端下载..."
                  let hubWeights = try await hub.snapshot(from: repo, matching: ["*.safetensors"])
                  let hubEnumerator = fileManager.enumerator(at: hubWeights, includingPropertiesForKeys: nil)
                  while let fileURL = hubEnumerator?.nextObject() as? URL {
@@ -123,7 +122,7 @@ public class Qwen3EmbeddingEngine: ObservableObject {
                 throw NSError(domain: "Qwen3EmbeddingEngine", code: 404, userInfo: [NSLocalizedDescriptionKey: "未找到权重文件 (.safetensors)"])
             }
             
-            await MainActor.run { self.loadingProgress = "正在应用权重..." }
+            self.loadingProgress = "正在应用权重..."
             
             // 检测是否为量化模型 (检查键中是否包含 scales)
             let isQuantized = weights.keys.contains { $0.contains(".scales") }
@@ -136,12 +135,10 @@ public class Qwen3EmbeddingEngine: ObservableObject {
             qwenModel.update(parameters: ModuleParameters.unflattened(weights))
             self.model = qwenModel
             
-            await MainActor.run {
-                self.isModelLoaded = true
-                self.memoryUsageMB = 440
-                self.loadingProgress = "加载完成"
-                self.isLoading = false
-            }
+            self.isModelLoaded = true
+            self.memoryUsageMB = 440
+            self.loadingProgress = "加载完成"
+            self.isLoading = false
             
         } catch {
             print("模型加载失败详情: \(error)")
@@ -157,11 +154,9 @@ public class Qwen3EmbeddingEngine: ObservableObject {
                 detailedError = error.localizedDescription
             }
             
-            await MainActor.run {
-                self.errorMessage = "模型加载失败: \(detailedError)"
-                self.loadingProgress = ""
-                self.isLoading = false
-            }
+            self.errorMessage = "模型加载失败: \(detailedError)"
+            self.loadingProgress = ""
+            self.isLoading = false
         }
     }
     
