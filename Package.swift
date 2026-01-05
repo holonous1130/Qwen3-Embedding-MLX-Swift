@@ -3,22 +3,27 @@
 import PackageDescription
 
 let package = Package(
-    name: "textmods",
+    name: "Qwen3Embedding",
     platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
         .library(
-            name: "textmods",
-            targets: ["textmods"]
+            name: "Qwen3Embedding",
+            targets: ["Qwen3Embedding"]
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/mzbac/mlx.embeddings", branch: "main"),
+        .package(url: "https://github.com/ml-explore/mlx-swift", from: "0.20.0"),
+        .package(url: "https://github.com/huggingface/swift-transformers", from: "0.1.0"),
     ],
     targets: [
         .target(
-            name: "textmods",
+            name: "Qwen3Embedding",
             dependencies: [
-                .product(name: "mlx_embeddings", package: "mlx.embeddings"),
+                .product(name: "MLX", package: "mlx-swift"),
+                .product(name: "MLXNN", package: "mlx-swift"),
+                .product(name: "MLXFast", package: "mlx-swift"),
+                .product(name: "Hub", package: "swift-transformers"),
+                .product(name: "Tokenizers", package: "swift-transformers"),
             ]
         ),
     ]
