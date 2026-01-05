@@ -6,13 +6,33 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		42E397F52F0B7CBB00865D49 /* MLX in Frameworks */ = {isa = PBXBuildFile; productRef = 42E397CF2F0B800000865D49 /* MLX */; };
+		42E397F62F0B7CBB00865D49 /* MLXNN in Frameworks */ = {isa = PBXBuildFile; productRef = 42E397E02F0B800000865D49 /* MLXNN */; };
+		42E397F72F0B7CBB00865D49 /* MLXFast in Frameworks */ = {isa = PBXBuildFile; productRef = 42E397E12F0B800000865D49 /* MLXFast */; };
+		42E397F82F0B7CBB00865D49 /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = 42E397E22F0B800000865D49 /* Tokenizers */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		42E397B42F0B776700865D49 /* textmods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = textmods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		42E398302F0B802900865D49 /* Exceptions for "textmods" folder in "textmods" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 42E397B32F0B776700865D49 /* textmods */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		42E397B62F0B776700865D49 /* textmods */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				42E398302F0B802900865D49 /* Exceptions for "textmods" folder in "textmods" target */,
+			);
 			path = textmods;
 			sourceTree = "<group>";
 		};
@@ -23,6 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42E397F82F0B7CBB00865D49 /* Tokenizers in Frameworks */,
+				42E397F72F0B7CBB00865D49 /* MLXFast in Frameworks */,
+				42E397F62F0B7CBB00865D49 /* MLXNN in Frameworks */,
+				42E397F52F0B7CBB00865D49 /* MLX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +89,10 @@
 			);
 			name = textmods;
 			packageProductDependencies = (
+				42E397CF2F0B800000865D49 /* MLX */,
+				42E397E02F0B800000865D49 /* MLXNN */,
+				42E397E12F0B800000865D49 /* MLXFast */,
+				42E397E22F0B800000865D49 /* Tokenizers */,
 			);
 			productName = textmods;
 			productReference = 42E397B42F0B776700865D49 /* textmods.app */;
@@ -94,6 +122,10 @@
 			);
 			mainGroup = 42E397AB2F0B776700865D49;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				42E397CE2F0B800000865D49 /* XCRemoteSwiftPackageReference "mlx-swift" */,
+				42E397DF2F0B800000865D49 /* XCRemoteSwiftPackageReference "swift-transformers" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 42E397B52F0B776700865D49 /* Products */;
 			projectDirPath = "";
@@ -178,7 +210,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -236,7 +268,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -256,8 +288,11 @@
 				DEVELOPMENT_TEAM = 36XAH54H8T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = textmods/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIFileSharingEnabled = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -269,10 +304,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.holonous.labs.textmods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -288,8 +320,11 @@
 				DEVELOPMENT_TEAM = 36XAH54H8T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = textmods/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIFileSharingEnabled = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -301,10 +336,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.holonous.labs.textmods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -332,6 +364,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		42E397CE2F0B800000865D49 /* XCRemoteSwiftPackageReference "mlx-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.29.0;
+			};
+		};
+		42E397DF2F0B800000865D49 /* XCRemoteSwiftPackageReference "swift-transformers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huggingface/swift-transformers";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42E397CF2F0B800000865D49 /* MLX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42E397CE2F0B800000865D49 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLX;
+		};
+		42E397E02F0B800000865D49 /* MLXNN */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42E397CE2F0B800000865D49 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXNN;
+		};
+		42E397E12F0B800000865D49 /* MLXFast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42E397CE2F0B800000865D49 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXFast;
+		};
+		42E397E22F0B800000865D49 /* Tokenizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42E397DF2F0B800000865D49 /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Tokenizers;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 42E397AC2F0B776700865D49 /* Project object */;
 }
