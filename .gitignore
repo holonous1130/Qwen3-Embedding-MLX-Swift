@@ -6,8 +6,6 @@ DerivedData/
 *.ipa
 *.xcuserstate
 .DS_Store
-textmods.xcodeproj/
-textmods/
 
 # Swift Package Manager
 #
